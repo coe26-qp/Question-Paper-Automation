@@ -43,8 +43,8 @@ async function extractUsingPython(filePath) {
     formData.append("file", fs.createReadStream(filePath));
 
     const response = await axios.post(
-      "http://127.0.0.1:5001/extract",
-      // "https://question-paper-automation-flask-api.onrender.com/extract",
+      // "http://127.0.0.1:5001/extract",
+      "https://question-paper-automation-flask-api.onrender.com/extract",
       formData,
       {
         headers: formData.getHeaders(),

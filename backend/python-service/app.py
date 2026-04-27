@@ -105,13 +105,13 @@
 
 
 
-
-
 from flask import Flask, request, jsonify
 from openpyxl import load_workbook
 import base64
 import traceback
 from flask_cors import CORS
+import zipfile
+from io import BytesIO
 
 app = Flask(__name__)
 CORS(app)
@@ -131,7 +131,23 @@ def get_anchor(img):
         return None, None
 
 # -----------------------------
-# Health check route
+# Extract images using ZIP (cloud-safe)
+# -----------------------------
+def extract_images_from_excel(file_bytes):
+    image_list = []
+    try:
+        with zipfile.ZipFile(BytesIO(file_bytes)) as z:
+            for name in z.namelist():
+                if name.startswith("xl/media/"):
+                    img_data = z.read(name)
+                    base64_img = base64.b64encode(img_data).decode("utf-8")
+                    image_list.append(base64_img)
+    except Exception as e:
+        print("ZIP extraction error:", str(e))
+    return image_list
+
+# -----------------------------
+# Health check
 # -----------------------------
 @app.route("/")
 def home():
@@ -148,15 +164,27 @@ def extract_questions():
 
         file = request.files["file"]
 
+        # Read file as bytes (for ZIP fallback)
+        file_bytes = file.read()
+
+        # Reset pointer for openpyxl
+        file_stream = BytesIO(file_bytes)
+
         # Load Excel
-        wb = load_workbook(file, data_only=True)
+        wb = load_workbook(file_stream, data_only=True)
         ws = wb.active
 
         results = []
 
-        # DEBUG: check images
+        # Try openpyxl images
         images = getattr(ws, "_images", [])
-        print("Total images found:", len(images))
+        print("openpyxl images found:", len(images))
+
+        # Fallback: extract images via ZIP
+        zip_images = extract_images_from_excel(file_bytes)
+        print("ZIP images found:", len(zip_images))
+
+        zip_index = 0
 
         # Loop rows
         for row_index, row in enumerate(ws.iter_rows(min_row=2), start=2):
@@ -178,10 +206,11 @@ def extract_questions():
                 qtype = str(qtype).strip().upper()
 
             # -----------------------------
-            # IMAGE DETECTION (SAFE)
+            # IMAGE DETECTION
             # -----------------------------
             question_image = None
 
+            # 1️⃣ Try openpyxl (precise mapping)
             for img in images:
                 try:
                     img_row, img_col = get_anchor(img)
@@ -192,6 +221,11 @@ def extract_questions():
                         break
                 except Exception as e:
                     print("Image error:", str(e))
+
+            # 2️⃣ Fallback (ZIP extraction)
+            if not question_image and zip_index < len(zip_images):
+                question_image = zip_images[zip_index]
+                zip_index += 1
 
             # -----------------------------
             # STORE RESULT
@@ -219,7 +253,7 @@ def extract_questions():
         }), 500
 
 # -----------------------------
-# Run app (for local only)
+# Run app (local only)
 # -----------------------------
 if __name__ == "__main__":
     import os
