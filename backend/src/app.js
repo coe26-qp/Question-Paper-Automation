@@ -69,18 +69,22 @@ require("./models/QuestionBank");
 
 const app = express();
 
-// ✅ CORS (ONLY ONCE - IMPORTANT)
-app.use(cors({
+// ✅ CORS CONFIG (FULL FIX)
+const corsOptions = {
   origin: [
     "http://localhost:5173",
     "http://localhost:5174"
   ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
-}));
+};
 
 // ✅ Middleware
 app.use(express.json());
+
+// // ✅ HANDLE PREFLIGHT EXPLICITLY (IMPORTANT)
+// app.options("/", cors(corsOptions));
 
 // ✅ Routes
 app.use("/api/auth", authRoutes);
