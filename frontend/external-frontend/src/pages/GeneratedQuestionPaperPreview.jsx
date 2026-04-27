@@ -314,7 +314,8 @@ export default function GeneratedQuestionPaperPreview() {
     const fetchPaper = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/paper-generation/fetchQuestionPaper/${paperId}`,
+          // `http://localhost:5000/api/paper-generation/fetchQuestionPaper/${paperId}`,
+          `https://question-paper-automation.onrender.com/api/paper-generation/fetchQuestionPaper/${paperId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("externalToken")}`,
@@ -335,7 +336,8 @@ export default function GeneratedQuestionPaperPreview() {
   /* ---------------- REGENERATE ---------------- */
   const regeneratePartA = async () => {
     const res = await axios.post(
-      `http://localhost:5000/api/paper-generation/generate/partA/${paperId}`,
+      // `http://localhost:5000/api/paper-generation/generate/partA/${paperId}`,
+      `https://question-paper-automation.onrender.com/api/paper-generation/generate/partA/${paperId}`,
       {},
       {
         headers: {
@@ -349,7 +351,8 @@ export default function GeneratedQuestionPaperPreview() {
 
   const regeneratePartB = async () => {
     const res = await axios.post(
-      `http://localhost:5000/api/paper-generation/generate/partB/${paperId}`,
+      // `http://localhost:5000/api/paper-generation/generate/partB/${paperId}`,
+      `https://question-paper-automation.onrender.com/api/paper-generation/generate/partB/${paperId}`,
       {},
       {
         headers: {

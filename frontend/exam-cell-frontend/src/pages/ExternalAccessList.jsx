@@ -82,7 +82,8 @@ const ExternalAccessList = () => {
     const fetchData = async () => {
         try {
             const res = await axios.get(
-                "http://localhost:5000/api/external-auth/externalAccessIDPassword",
+                // "http://localhost:5000/api/external-auth/externalAccessIDPassword",
+                "https://question-paper-automation.onrender.com/api/external-auth/externalAccessIDPassword",
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("examCellToken")}`,

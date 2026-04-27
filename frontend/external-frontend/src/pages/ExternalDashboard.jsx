@@ -175,7 +175,8 @@ export default function ExternalDashboard() {
   const fetchAssignedBank = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/external-access/assigned-question-bank",
+        // "http://localhost:5000/api/external-access/assigned-question-bank",
+        "https://question-paper-automation.onrender.com/api/external-access/assigned-question-bank",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("externalToken")}`,
@@ -201,7 +202,8 @@ export default function ExternalDashboard() {
       setIsExtracting(true);
 
       const res = await axios.get(
-        "http://localhost:5000/api/external-access/extract-questions",
+        // "http://localhost:5000/api/external-access/extract-questions",
+        "https://question-paper-automation.onrender.com/api/external-access/extract-questions",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("externalToken")}`,

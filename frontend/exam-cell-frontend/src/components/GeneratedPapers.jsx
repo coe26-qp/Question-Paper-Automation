@@ -14,7 +14,8 @@ export default function GeneratedPapers() {
   const fetchPapers = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/question-bank/generated-paper-by-external",
+        // "http://localhost:5000/api/question-bank/generated-paper-by-external",
+        "https://question-paper-automation.onrender.com/api/question-bank/generated-paper-by-external",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("examCellToken")}`,

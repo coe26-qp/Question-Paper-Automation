@@ -21,7 +21,8 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    const res = await fetch("http://localhost:5000/api/manual-faculty/create", {
+    // const res = await fetch("http://localhost:5000/api/manual-faculty/create", {
+    const res = await fetch("https://question-paper-automation.onrender.com/api/manual-faculty/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -630,7 +630,8 @@ export default function ExternalQuestionBank() {
   const fetchQuestions = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/external-access/fetch-extracted-questions",
+        // "http://localhost:5000/api/external-access/fetch-extracted-questions",
+        "https://question-paper-automation.onrender.com/api/external-access/fetch-extracted-questions",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("externalToken")}`,
@@ -653,7 +654,8 @@ export default function ExternalQuestionBank() {
   const handleSaveEdit = async (updated) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/external/questions/${updated._id}`,
+        // `http://localhost:5000/api/external/questions/${updated._id}`,
+        `https://question-paper-automation.onrender.com/api/external/questions/${updated._id}`,
         updated,
         {
           headers: {
@@ -672,7 +674,8 @@ export default function ExternalQuestionBank() {
   const handleApprove = async (_id) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/external/questions/${_id}/approve`,
+        // `http://localhost:5000/api/external/questions/${_id}/approve`,
+        `https://question-paper-automation.onrender.com/api/external/questions/${_id}/approve`,
         {},
         {
           headers: {
@@ -711,7 +714,8 @@ export default function ExternalQuestionBank() {
   const handleFreeze = async (_id) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/external/questions/${_id}/freeze`,
+        // `http://localhost:5000/api/external/questions/${_id}/freeze`,
+        `https://question-paper-automation.onrender.com/api/external/questions/${_id}/freeze`,
         {},
         {
           headers: {
@@ -734,7 +738,8 @@ export default function ExternalQuestionBank() {
   const handleDeApprove = async (_id) => {
   try {
     const res = await axios.put(
-      `http://localhost:5000/api/external/questions/${_id}/deapprove`,
+      // `http://localhost:5000/api/external/questions/${_id}/deapprove`,
+      `https://question-paper-automation.onrender.com/api/external/questions/${_id}/deapprove`,
       {},
       {
         headers: {
@@ -766,7 +771,8 @@ export default function ExternalQuestionBank() {
       }
 
       const res = await axios.post(
-        "http://localhost:5000/api/paper-generation/generate",
+        // "http://localhost:5000/api/paper-generation/generate",
+        "https://question-paper-automation.onrender.com/api/paper-generation/generate",
         {
           pattern,
           year: formData.year,
@@ -805,7 +811,8 @@ export default function ExternalQuestionBank() {
   const fetchApprovedCounts = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/external/questions/approved-count",
+        // "http://localhost:5000/api/external/questions/approved-count",
+        "https://question-paper-automation.onrender.com/api/external/questions/approved-count",
         {
           params: { questionBankId },
           headers: {

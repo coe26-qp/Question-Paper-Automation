@@ -23,7 +23,8 @@ export default function ExamCellPaperPreview() {
   const fetchPaper = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/paper-generation/examcell/fetchQuestionPaper/${paperId}`,
+        // `http://localhost:5000/api/paper-generation/examcell/fetchQuestionPaper/${paperId}`,
+        `https://question-paper-automation.onrender.com/api/paper-generation/examcell/fetchQuestionPaper/${paperId}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("examCellToken")}`,

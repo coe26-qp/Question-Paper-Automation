@@ -742,7 +742,8 @@ export default function AddQuestion() {
         if (!validateForm()) return;
 
         try {
-            const res = await fetch("http://localhost:5000/api/manual-faculty/add-question", {
+            // const res = await fetch("http://localhost:5000/api/manual-faculty/add-question", {
+            const res = await fetch("https://question-paper-automation.onrender.com/api/manual-faculty/add-question", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
