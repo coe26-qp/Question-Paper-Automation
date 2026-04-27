@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================= */
+/* A4 PAGE LAYOUT */
+/* ============================= */
+
+.a4-page {
+  width: 190mm;
+  margin: 0 auto;
+  padding: 10mm;
+  box-sizing: border-box;
+
+  font-family: "Book Antiqua";
+  font-size: 14px;
+  line-height: 1.3;
+
+  background: white;
+  margin-top: -50px;
+}
+
+/* ============================= */
+/* GENERAL RESET */
+/* ============================= */
+
+p {
+  margin: 2px 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================= */
+/* QUESTION BLOCK */
+/* ============================= */
+
+.question-block {
+  margin-bottom: 6px;
+}
+
+/* ============================= */
+/* TABLE STRUCTURE */
+/* ============================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* ✅ VERY IMPORTANT FIX */
+.question-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  table-layout: auto;
+  /* ✅ FIXED */
+}
+
+/* CELL STYLE */
+.question-table td {
+  vertical-align: top;
+  padding-bottom: 6px;
+  word-break: break-word;
+}
+
+/* ✅ PREVENT QUESTION SPLIT ONLY HERE */
+.question-table tr {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+/* ============================= */
+/* IMAGE BLOCK */
+/* ============================= */
+
+.image-block {
+  margin-top: 4px;
+}
+
+.image-block img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 5px;
+}
+
+/* ============================= */
+/* CO TABLE */
+/* ============================= */
+
+.co-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+  text-align: center;
+}
+
+.co-table th,
+.co-table td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+  word-break: break-word;
+}
+
+.cmpTable {
+  /* border: 1px solid black; */
+  padding: 8px;
+  text-align: center;
+  word-break: break-word;
+}
+
+.co-table th {
+  font-weight: bold;
+}
+
+/* ============================= */
+/* CONTENT ALIGNMENT */
+/* ============================= */
+
+.sub-question {
+  margin-bottom: 6px;
+}
+
+.question-content {
+  margin: 0;
+  padding: 0;
+  line-height: 1.3;
+}
+
+/* ============================= */
+/* MANUAL PAGE BREAK */
+/* ============================= */
+
+.page-break {
+  page-break-before: always;
+  break-before: page;
+}
+
+/* ============================= */
+/* PREVENT QUESTION SPLIT */
+/* ============================= */
+
+.no-break {
+  page-break-inside: avoid;
+  break-inside: avoid !important;
+  display: block;
+}
+
+/* ============================= */
+/* PRINT OPTIMIZATION */
+/* ============================= */
+
+@media print {
+  body {
+    margin: 0;
+  }
+
+  .a4-page {
+    box-shadow: none;
+  }
+}
