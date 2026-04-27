@@ -17,6 +17,10 @@ def get_anchor(img):
     except:
         return None, None
 
+@app.route("/")
+def home():
+    return "Flask API is running!"
+
 
 @app.route("/extract", methods=["POST"])
 def extract_questions():
