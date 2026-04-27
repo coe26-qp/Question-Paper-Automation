@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
+const questionExtraction = require("./routes/questionExtractionRoute")
 const authRoutes = require("./routes/authRoutes");
 const questionBankRoutes = require("./routes/questionBankRoutes");
 // const externalAccessroutes = require("./routes/externalAccessRoutes");
@@ -31,6 +32,7 @@ app.use("/api/paper-generation", paperGenerationRoute);
 app.use("/api", tempRemoveRoute);
 app.use("/api/manual-faculty", manualFacultyRoutes);
 // app.use("/api/external", autoLoginRoute);
+app.use("/api/questionExtraction", questionExtraction);
 
 // Test Route
 app.get("/", (req, res) => {
