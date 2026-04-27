@@ -113,8 +113,8 @@ import base64
 import traceback
 from flask_cors import CORS
 
-CORS(app)
 app = Flask(__name__)
+CORS(app)
 
 # -----------------------------
 # Safe anchor reader
