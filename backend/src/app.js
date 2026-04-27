@@ -28,7 +28,7 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
-app.options("*", cors());
+
 
 app.use("/api/auth", authRoutes);
 app.use("/api/question-bank", questionBankRoutes);
